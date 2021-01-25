@@ -248,9 +248,7 @@ void SceneAudioProcessor::incomingMessage(std::shared_ptr<NngMsg> msg) {
     commandSocket->sendResp(cmd);
 
   } else if (cmd == commandSocket->Command::GetAdmAndMappings) {
-    auto future =
-        std::async(std::launch::async, [this]() { sendAdmMetadata(); });
-    future.get();
+    sendAdmMetadata();
 
   } else if (cmd == commandSocket->Command::GetConfig) {
     uint8_t numChannels = 64;
